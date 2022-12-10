@@ -57,12 +57,20 @@ class Trainer(object):
 
     def load_dataloader(self, fold_number, val_fold_number):
 
-        train_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/train_idx-%d.txt' % (self.args.data, fold_number),
+        if (self.args.rerun_under_asap_setting):
+            train_idxes = torch.as_tensor(np.loadtxt('datasets/asap/datasets/%s/10fold_idx_%s/train_idx-%d.txt' % (self.args.data, self.args.seed, fold_number),
                                                 dtype=np.int32), dtype=torch.long)
-        val_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/test_idx-%d.txt' % (self.args.data, val_fold_number),
-                                                dtype=np.int32), dtype=torch.long)     
-        test_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/test_idx-%d.txt' % (self.args.data, fold_number),
-                                                dtype=np.int32), dtype=torch.long)
+            test_idxes = torch.as_tensor(np.loadtxt('datasets/asap/datasets/%s/10fold_idx_%s/test_idx-%d.txt' % (self.args.data, self.args.seed, fold_number),
+                                                    dtype=np.int32), dtype=torch.long)
+            val_idxes = torch.as_tensor(np.loadtxt('datasets/asap/datasets/%s/10fold_idx_%s/val_idx-%d.txt' % (self.args.data, self.args.seed, fold_number),
+                                                    dtype=np.int32), dtype=torch.long)
+        else:
+            train_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/train_idx-%d.txt' % (self.args.data, fold_number),
+                                                    dtype=np.int32), dtype=torch.long)
+            val_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/test_idx-%d.txt' % (self.args.data, val_fold_number),
+                                                    dtype=np.int32), dtype=torch.long)     
+            test_idxes = torch.as_tensor(np.loadtxt('./datasets/%s/10fold_idx/test_idx-%d.txt' % (self.args.data, fold_number),
+                                                    dtype=np.int32), dtype=torch.long)
 
         all_idxes = reduce(np.union1d, (train_idxes, val_idxes, test_idxes))
         assert len(all_idxes) == len(self.dataset)

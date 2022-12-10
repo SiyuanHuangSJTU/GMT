@@ -9,7 +9,8 @@ python main.py  --type classification_TU \
                 --num-hidden 32 \
                 --num-heads 4 \
                 --lr-schedule \
-                --cluster
+                --cluster \
+                --rerun_under_asap_setting
 
 # # PROTEINS
 # python main.py  --type classification_TU \
@@ -22,7 +23,8 @@ python main.py  --type classification_TU \
 #                 --num-hidden 128 \
 #                 --num-heads 2 \
 #                 --lr-schedule \
-#                 --cluster
+                # --cluster \
+                # --rerun_under_asap_setting
 
 # # MUTAG
 # python main.py  --type classification_TU \

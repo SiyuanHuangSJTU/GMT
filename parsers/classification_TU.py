@@ -24,7 +24,7 @@ class Parser:
         self.parser.add_argument('--mab-conv', default='GCN', type=str,
                             choices=['GCN', 'GIN'],
                             help='Multi-head Attention Block, GNN type')
-        self.parser.add_argument('--seed', type=int, default=42, help='seed')
+        self.parser.add_argument('--seed', type=int, default=0, help='seed')
 
         self.parser.add_argument('--num-hidden', type=int, default=128, help='hidden size')
         self.parser.add_argument('--num-heads', type=int, default=1, help='attention head size')

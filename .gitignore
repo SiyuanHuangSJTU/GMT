@@ -4,7 +4,6 @@ dataset/
 zinc/
 checkpoints/
 logs/
-results/
 .vscode/
 
 # Byte-compiled / optimized / DLL files
